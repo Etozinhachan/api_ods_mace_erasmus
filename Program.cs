@@ -48,11 +48,11 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var dbConnectionString = builder.Configuration.GetConnectionString("Default");
 
-builder.Services.AddDbContext<DbDataContext>(opt => /*opt.UseInMemoryDatabase(
+builder.Services.AddDbContext<DbDataContext>(opt => opt.UseInMemoryDatabase(
     
-    "db_potente")*/opt.UseMySql(
+    "db_potente")/*opt.UseMySql(
         dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)
-    )
+    )*/
     
     ); 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -1,0 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+namespace api_ods_mace_erasmus.models;
+
+public class UserStatusJsonResponse{
+
+    public required bool isAdmin { get; set; }
+
+}

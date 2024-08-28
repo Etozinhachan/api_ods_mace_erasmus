@@ -202,7 +202,9 @@ namespace api_ods_mace_erasmus.Controllers
 
             Response.Headers.Append("ErOdsMaceApi-Jwt-Token", new JwtSecurityTokenHandler().WriteToken(token).ToString());
 
-            return Ok();
+            return Ok(new UserStatusJsonResponse{
+                isAdmin = false
+            });
         }
 
         [HttpPost]
@@ -237,7 +239,9 @@ namespace api_ods_mace_erasmus.Controllers
 
             Response.Headers.Append("ErOdsMaceApi-Jwt-Token", new JwtSecurityTokenHandler().WriteToken(token).ToString());
 
-            return Ok();
+            return Ok(new UserStatusJsonResponse(){
+                isAdmin = searchUser.isAdmin
+            });
         }
 
         // DELETE: api/Users/5

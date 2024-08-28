@@ -202,7 +202,8 @@ namespace api_ods_mace_erasmus.Controllers
 
             Response.Headers.Append("ErOdsMaceApi-Jwt-Token", new JwtSecurityTokenHandler().WriteToken(token).ToString());
 
-            return Ok(new UserStatusJsonResponse{
+            return Ok(new UserLoginResponse{
+                jwt_token = new JwtSecurityTokenHandler().WriteToken(token).ToString(),
                 isAdmin = false
             });
         }
@@ -239,7 +240,8 @@ namespace api_ods_mace_erasmus.Controllers
 
             Response.Headers.Append("ErOdsMaceApi-Jwt-Token", new JwtSecurityTokenHandler().WriteToken(token).ToString());
 
-            return Ok(new UserStatusJsonResponse(){
+            return Ok(new UserLoginResponse(){
+                jwt_token = new JwtSecurityTokenHandler().WriteToken(token).ToString(),
                 isAdmin = searchUser.isAdmin
             });
         }

@@ -27,7 +27,7 @@ builder.Services.AddAuthentication(x =>
         //ValidIssuer = config["JwtSettings:Issuer"],
         //ValidAudience = config["JwtSettings:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey
-            (Encoding.UTF8.GetBytes(config["JwtSettings:Key"]!)),
+            (Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_Key")!)),
         ValidateIssuer = false,
         ValidateAudience = false,
         ValidateLifetime = true,

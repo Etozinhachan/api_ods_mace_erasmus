@@ -8,6 +8,7 @@ using api_ods_mace_erasmus.Identity;
 using api_ods_mace_erasmus.Interfaces;
 using api_ods_mace_erasmus.Repositories;
 using api_ods_mace_erasmus.helper;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -15,11 +16,16 @@ var config = builder.Configuration;
 // Add services to the container.
 
 var root = Directory.GetParent(Directory.GetCurrentDirectory());
-foreach (var t in root?.GetDirectories()!)
-{
-    Console.WriteLine(t?.FullName);
+
+var etc = Path.Combine(root?.ToString()!, "/etc");
+
+var etc_info = Directory.CreateDirectory(etc.ToString());
+
+foreach(var t in etc_info.EnumerateDirectories()){
+    Console.WriteLine(t);
 }
-//var dotenv = Path.Combine(root, ".env");
+
+var dotenv = Path.Combine(root?.ToString()!, "/etc/secrets/.env");
 //DotEnv.Load(dotenv);
 
 Console.WriteLine("a " + Environment.GetEnvironmentVariable("JWT_Key"));

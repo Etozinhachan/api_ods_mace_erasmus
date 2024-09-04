@@ -1,4 +1,4 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+# syntax = docker/dockerfile:1.2
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
@@ -12,6 +12,7 @@ COPY ["api_ods_mace_erasmus.csproj", "."]
 RUN dotnet restore "./api_ods_mace_erasmus.csproj"
 COPY . .
 WORKDIR "/src/."
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 RUN dotnet build "api_ods_mace_erasmus.csproj" -c Release -o /app/build
 
 FROM build AS publish

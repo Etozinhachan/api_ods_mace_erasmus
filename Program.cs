@@ -7,14 +7,20 @@ using api_ods_mace_erasmus.data;
 using api_ods_mace_erasmus.Identity;
 using api_ods_mace_erasmus.Interfaces;
 using api_ods_mace_erasmus.Repositories;
+using api_ods_mace_erasmus.helper;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
 // Add services to the container.
 
-var root = Directory.GetCurrentDirectory();
-var dotenv = Path.Combine(root, ".env");
+var root = Directory.GetParent(Directory.GetCurrentDirectory());
+foreach (var t in root?.GetDirectories()!)
+{
+    Console.WriteLine(t?.FullName);
+}
+//var dotenv = Path.Combine(root, ".env");
+//DotEnv.Load(dotenv);
 
 Console.WriteLine("a " + Environment.GetEnvironmentVariable("JWT_Key"));
 Console.WriteLine("A " + root);
@@ -41,7 +47,7 @@ builder.Services.AddAuthentication(x =>
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy(IdentityData.AdminUserPolicyName, p => 
+    options.AddPolicy(IdentityData.AdminUserPolicyName, p =>
         p.RequireClaim(IdentityData.AdminUserClaimName, "True"));
 });
 
@@ -58,8 +64,8 @@ builder.Services.AddDbContext<DbDataContext>(opt => /*opt.UseInMemoryDatabase(
     "db_potente")*/opt.UseMySql(
         dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)
     )
-    
-    ); 
+
+    );
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 
@@ -67,9 +73,9 @@ builder.Services.AddDbContext<DbDataContext>(opt => /*opt.UseInMemoryDatabase(
 
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options => 
+builder.Services.AddSwaggerGen(options =>
 {
-    
+
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -115,11 +121,11 @@ var app = builder.Build();
 
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.RoutePrefix = "swagger";
-    });
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.RoutePrefix = "swagger";
+});
 //}
 
 

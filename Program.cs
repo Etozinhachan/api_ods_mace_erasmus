@@ -17,11 +17,11 @@ var config = builder.Configuration;
 
 var root = Directory.GetParent(Directory.GetCurrentDirectory());
 
-var etc = Path.Combine(root?.ToString()!, "/etc");
+var etc = Path.Combine(root?.ToString()!, "/etc/secrets");
 
 var etc_info = Directory.CreateDirectory(etc.ToString());
 
-foreach(var t in etc_info.EnumerateDirectories()){
+foreach(var t in etc_info.EnumerateFiles()){
     Console.WriteLine(t);
 }
 

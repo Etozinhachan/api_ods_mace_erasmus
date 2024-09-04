@@ -17,16 +17,12 @@ var config = builder.Configuration;
 
 var root = Directory.GetParent(Directory.GetCurrentDirectory());
 
-var etc = Path.Combine(root?.ToString()!, "/etc/secrets");
-
-var etc_info = Directory.CreateDirectory(etc.ToString());
-
-foreach(var t in etc_info.EnumerateFiles()){
-    Console.WriteLine(t);
-}
-
 var dotenv = Path.Combine(root?.ToString()!, "/etc/secrets/.env");
-//DotEnv.Load(dotenv);
+
+
+Console.WriteLine(dotenv);
+
+DotEnv.Load(dotenv);
 
 Console.WriteLine("a " + Environment.GetEnvironmentVariable("JWT_Key"));
 Console.WriteLine("A " + root);

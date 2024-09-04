@@ -12,6 +12,7 @@ public class DbDataContext : DbContext
 
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<Activity> Activities { get; set; } = null!;
+    public DbSet<Translation> Translations { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -21,6 +22,11 @@ public class DbDataContext : DbContext
             .HasForeignKey(e => e.user_id)
             .HasPrincipalKey(e => e.id);
 
+        modelBuilder.Entity<User>()
+            .HasMany(e => e.submitted_translations)
+            .WithOne(e => e.submited_by_user)
+            .HasForeignKey(e => e.user_id)
+            .HasPrincipalKey(e => e.id);
 /*
         modelBuilder.Entity<UserPrompt>()
             .Property(u => u.prompt_number)

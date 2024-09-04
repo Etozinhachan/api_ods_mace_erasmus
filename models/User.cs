@@ -11,5 +11,6 @@ public class User{
     public string? salt { get; set; }
     public bool isAdmin { get; set; } = false;
     public ICollection<Activity>? submitted_activities { get; }
+    public ICollection<Translation>? submitted_translations { get; }
 
 }

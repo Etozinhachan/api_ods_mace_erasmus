@@ -43,16 +43,17 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
+builder.Services.AddScoped<ITranslationRepository, TranslationRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-var dbConnectionString = builder.Configuration.GetConnectionString("Default");
+var dbConnectionString = $"server={Environment.GetEnvironmentVariable("Database_Server")}; database={Environment.GetEnvironmentVariable("Database_Name")}; user={Environment.GetEnvironmentVariable("Database_User")}; password={Environment.GetEnvironmentVariable("Database_Password")};";
 
-builder.Services.AddDbContext<DbDataContext>(opt => opt.UseInMemoryDatabase(
+builder.Services.AddDbContext<DbDataContext>(opt => /*opt.UseInMemoryDatabase(
     
-    "db_potente")/*opt.UseMySql(
+    "db_potente")*/opt.UseMySql(
         dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)
-    )*/
+    )
     
     ); 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

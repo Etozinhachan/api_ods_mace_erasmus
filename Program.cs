@@ -13,7 +13,11 @@ var config = builder.Configuration;
 
 // Add services to the container.
 
+var root = Directory.GetCurrentDirectory();
+var dotenv = Path.Combine(root, ".env");
 
+Console.WriteLine("a " + Environment.GetEnvironmentVariable("JWT_Key"));
+Console.WriteLine("A " + root);
 
 builder.Services.AddAuthentication(x =>
 {

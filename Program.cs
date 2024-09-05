@@ -27,7 +27,7 @@ var config = builder.Configuration;
 
 //Environment.SetEnvironmentVariable("JWT_Key", "rawr");
 
-DotEnv.Load("/etc/secrets/.env");
+DotEnv.Load("etc/secrets/.env");
 
 builder.Services.AddAuthentication(x =>
 {
@@ -61,7 +61,9 @@ builder.Services.AddScoped<ITranslationRepository, TranslationRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-var dbConnectionString = "server=" + Environment.GetEnvironmentVariable("Database_Server") + ";database=" + Environment.GetEnvironmentVariable("Database_Name") + ";user=" + Environment.GetEnvironmentVariable("Database_User") + ";password=" + Environment.GetEnvironmentVariable("Database_Password") + ";";
+//var dbConnectionString = "server=" + Environment.GetEnvironmentVariable("Database_Server") + ";database=" + Environment.GetEnvironmentVariable("Database_Name") + ";user=" + Environment.GetEnvironmentVariable("Database_User") + ";password=" + Environment.GetEnvironmentVariable("Database_Password") + ";";
+
+var dbConnectionString = "server=erasmus-esl.pt; database=erasmus3_api_ods_mace_erasmus; user=erasmus3_api_ods_mace_erasmus; password=hwyE1V2by75z";
 
 //var dbConnectionString = config.GetConnectionString("Default");
 

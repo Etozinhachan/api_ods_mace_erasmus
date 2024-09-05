@@ -27,7 +27,7 @@ var config = builder.Configuration;
 
 //Environment.SetEnvironmentVariable("JWT_Key", "rawr");
 
-DotEnv.Load("etc/secrets/.env");
+DotEnv.Load("/etc/secrets/.env");
 
 builder.Services.AddAuthentication(x =>
 {

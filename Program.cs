@@ -23,6 +23,8 @@ var dotenv = Path.Combine(root?.ToString()!, "/etc/secrets/.env");
 
 //Console.WriteLine(dotenv);
 
+//Environment.SetEnvironmentVariable("JWT_Key", "rawr");
+
 DotEnv.Load(dotenv);
 
 builder.Services.AddAuthentication(x =>
@@ -58,6 +60,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var dbConnectionString = $"server={Environment.GetEnvironmentVariable("Database_Server")}; database={Environment.GetEnvironmentVariable("Database_Name")}; user={Environment.GetEnvironmentVariable("Database_User")}; password={Environment.GetEnvironmentVariable("Database_Password")};";
+
+//var dbConnectionString = config.GetConnectionString("Default");
 
 Console.WriteLine("BBBBBBBBBBBBB " + dbConnectionString);
 

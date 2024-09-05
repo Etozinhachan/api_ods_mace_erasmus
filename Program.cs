@@ -63,7 +63,7 @@ builder.Services.AddScoped<ITranslationRepository, TranslationRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-var dbConnectionString = $"server={Environment.GetEnvironmentVariable("Database_Server")};database={Environment.GetEnvironmentVariable("Database_Name")};uid={Environment.GetEnvironmentVariable("Database_User")};password={Environment.GetEnvironmentVariable("Database_Password")};";
+var dbConnectionString = "server=" + Environment.GetEnvironmentVariable("Database_Server") + ";database=" + Environment.GetEnvironmentVariable("Database_Name") + ";uid=" + Environment.GetEnvironmentVariable("Database_User") + ";pwd=" + Environment.GetEnvironmentVariable("Database_Password") + ";";
 
 //var dbConnectionString = config.GetConnectionString("Default");
 

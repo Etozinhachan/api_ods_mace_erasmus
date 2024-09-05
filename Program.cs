@@ -25,9 +25,6 @@ var dotenv = Path.Combine(root?.ToString()!, "/etc/secrets/.env");
 
 DotEnv.Load(dotenv);
 
-Console.WriteLine("a " + Environment.GetEnvironmentVariable("JWT_Key"));
-Console.WriteLine("A " + root);
-
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -61,6 +58,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var dbConnectionString = $"server={Environment.GetEnvironmentVariable("Database_Server")}; database={Environment.GetEnvironmentVariable("Database_Name")}; user={Environment.GetEnvironmentVariable("Database_User")}; password={Environment.GetEnvironmentVariable("Database_Password")};";
+
+Console.WriteLine("BBBBBBBBBBBBB " + dbConnectionString);
 
 builder.Services.AddDbContext<DbDataContext>(opt => /*opt.UseInMemoryDatabase(
     

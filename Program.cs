@@ -18,7 +18,7 @@ var config = builder.Configuration;
 var root = Directory.GetParent(Directory.GetCurrentDirectory());
 
 //var dotenv = Path.Combine(root?.ToString()!, "/etc/secrets/.env");
-var dotenv = Path.Combine(root?.ToString()!, "/app/.env");
+var dotenv = Path.Combine(root?.ToString()!, "/etc/secrets/.env");
 
 
 //Console.WriteLine(dotenv);

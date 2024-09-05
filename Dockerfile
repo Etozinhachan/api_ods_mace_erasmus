@@ -15,6 +15,8 @@ WORKDIR "/src/."
 RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 RUN dotnet build "api_ods_mace_erasmus.csproj" -c Release -o /app/build
 
+COPY --from=build /etc/secrets/.env /app
+
 FROM build AS publish
 RUN dotnet publish "api_ods_mace_erasmus.csproj" -c Release -o /app/publish /p:UseAppHost=false
 

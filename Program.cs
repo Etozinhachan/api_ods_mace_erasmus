@@ -18,11 +18,12 @@ var config = builder.Configuration;
 var root = Directory.GetParent(Directory.GetCurrentDirectory());
 
 //var dotenv = Path.Combine(root?.ToString()!, "/etc/secrets/.env");
+var dotenv = Path.Combine(root?.ToString()!, "/app/.env");
 
 
 //Console.WriteLine(dotenv);
 
-//DotEnv.Load(dotenv);
+DotEnv.Load(dotenv);
 
 Console.WriteLine("a " + Environment.GetEnvironmentVariable("JWT_Key"));
 Console.WriteLine("A " + root);

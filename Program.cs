@@ -15,17 +15,21 @@ var config = builder.Configuration;
 
 // Add services to the container.
 
-var root = Directory.GetParent(Directory.GetCurrentDirectory());
+//var root = Directory.GetCurrentDirectory();
 
 //var dotenv = Path.Combine(root?.ToString()!, "/etc/secrets/.env");
-var dotenv = Path.Combine(root?.ToString()!, "/etc/secrets/.env");
 
+
+//Console.WriteLine(root);
+//var dotenv = Path.Combine(root, "etc/secrets/.env");
+
+//Console.WriteLine(dotenv);
 
 //Console.WriteLine(dotenv);
 
 //Environment.SetEnvironmentVariable("JWT_Key", "rawr");
 
-DotEnv.Load(dotenv);
+DotEnv.Load("/etc/secrets/.env");
 
 builder.Services.AddAuthentication(x =>
 {

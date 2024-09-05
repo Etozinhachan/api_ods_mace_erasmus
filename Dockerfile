@@ -20,6 +20,8 @@ RUN dotnet publish "api_ods_mace_erasmus.csproj" -c Release -o /app/publish /p:U
 
 FROM base AS final
 WORKDIR /app
+WORKDIR "/"
 COPY --from=build /etc/secrets/.env .
+WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "api_ods_mace_erasmus.dll"]

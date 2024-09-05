@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1.2
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
+
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
@@ -12,8 +12,7 @@ COPY ["api_ods_mace_erasmus.csproj", "."]
 RUN dotnet restore "./api_ods_mace_erasmus.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env \
-    chmod 0444 /etc/secrets/.env && cat /etc/secrets/.env
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 RUN dotnet build "api_ods_mace_erasmus.csproj" -c Release -o /app/build
 
 FROM build AS publish

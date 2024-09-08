@@ -61,19 +61,18 @@ builder.Services.AddScoped<ITranslationRepository, TranslationRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-//var dbConnectionString = "server=" + Environment.GetEnvironmentVariable("Database_Server") + ";database=" + Environment.GetEnvironmentVariable("Database_Name") + ";user=" + Environment.GetEnvironmentVariable("Database_User") + ";password=" + Environment.GetEnvironmentVariable("Database_Password") + ";";
+var dbConnectionString = "server=" + Environment.GetEnvironmentVariable("Database_Server") + ";database=" + Environment.GetEnvironmentVariable("Database_Name") + ";user=" + Environment.GetEnvironmentVariable("Database_User") + ";password=" + Environment.GetEnvironmentVariable("Database_Password") + ";";
 
-var dbConnectionString = "server=erasmus-esl.pt; database=erasmus3_api_ods_mace_erasmus; user=erasmus3_api_ods_mace_erasmus; password=hwyE1V2by75z; port=3306; default command timeout=60;";
 
 //var dbConnectionString = config.GetConnectionString("Default");
 
-Console.WriteLine("BBBBBBBBBBBBB " + dbConnectionString);
+//Console.WriteLine("BBBBBBBBBBBBB " + dbConnectionString);
 
-builder.Services.AddDbContext<DbDataContext>(opt => /*opt.UseInMemoryDatabase(
+builder.Services.AddDbContext<DbDataContext>(opt => opt.UseInMemoryDatabase(
     
-    "db_potente")*/opt.UseMySql(
+    "db_potente")/*opt.UseMySql(
         dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)
-    )
+    )*/
 
     );
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

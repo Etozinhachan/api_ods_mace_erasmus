@@ -98,11 +98,22 @@ namespace api_ods_mace_erasmus.Controllers
 
         #endregion
 
+        #region getActivities
+
+        [HttpGet]
+        public async Task<IActionResult> getActivities(){
+
+            return Ok(_activityRepository.GetAllActivities());
+
+        }
+
+        #endregion
+
         #region getActivityById
 
         [Authorize]
         [HttpGet]
-        [Route("activity/{id:guid}")]
+        [Route("{id:guid}")]
 
         public async Task<IActionResult> getActivityById([FromRoute] Guid id)
         {

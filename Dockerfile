@@ -12,7 +12,7 @@ COPY ["api_ods_mace_erasmus.csproj", "."]
 RUN dotnet restore "./api_ods_mace_erasmus.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
+#RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 RUN dotnet build "api_ods_mace_erasmus.csproj" -c Release -o /app/build
 
 FROM build AS publish

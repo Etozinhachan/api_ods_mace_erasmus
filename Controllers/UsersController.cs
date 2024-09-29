@@ -208,7 +208,8 @@ namespace api_ods_mace_erasmus.Controllers
 
             return Ok(new UserLoginResponse{
                 jwt_token = new JwtSecurityTokenHandler().WriteToken(token).ToString(),
-                isAdmin = false
+                isAdmin = user.isAdmin,
+                username = user.UserName
             });
         }
 
@@ -246,7 +247,8 @@ namespace api_ods_mace_erasmus.Controllers
 
             return Ok(new UserLoginResponse(){
                 jwt_token = new JwtSecurityTokenHandler().WriteToken(token).ToString(),
-                isAdmin = searchUser.isAdmin
+                isAdmin = searchUser.isAdmin,
+                username = searchUser.UserName
             });
         }
 
